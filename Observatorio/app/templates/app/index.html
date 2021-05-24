@@ -1,0 +1,52 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <div class="container">
+        <h2>{{ message }}</h2>
+    </div>
+    <div class="container">
+        {% if form.errors %}
+            <p style="color: red">Revise el cuadro de busqueda</p>
+        {% endif %}
+    </div>
+    <div class="container">
+        <form action="" method="post" class="form-inline my-2 my-lg-0">{% csrf_token %}
+            <div class="form-group">
+                <label>Tema:</label>
+                {{ form.tema_select }}
+            </div>
+            <div class="form-group">
+                <label>Idioma:</label>
+                {{ form.idioma_select }}
+            </div>
+            <div class="form-group">
+                <label>Palabras clave:</label>
+                {{ form.palabra }}
+                <input type="submit" class="btn btn-primary" value="Buscar" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    {% for documento in grupo_documentos %}
+    <div class="col-md-4">
+        <h2>{{ documento.titulo }}</h2>
+        <h3>Resumen</h3>
+        <p>
+            {{ documento.resumen }}
+        </p>
+        <h4>
+            {% if documento.tema == 'Info' %} Inform&aacute;tica
+            {% elif documento.tema == 'Tele' %} Telecomunicaciones
+            {% endif %}
+        </h4>
+        <h5>{{ documento.pais }}</h5>
+        <p><a class="btn btn-default" href="{{ documento.link }}">Descargar</a></p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
