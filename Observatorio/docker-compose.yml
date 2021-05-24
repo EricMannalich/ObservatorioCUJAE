@@ -1,0 +1,50 @@
+version: '3.8'
+
+x-database-variables: &database-variables
+    POSTGRES_BD: postgres
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+
+x-app-variables: &app-variables
+    <<: *database-variables
+    POSTGRES_HOST: postgres
+
+services:
+    postgres:
+        image: postgres:13.3
+        container_name: postgres_observatorio
+        environment: *database-variables
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        ports: 
+            - "5430:5432"
+
+    django: 
+        image: observatorio:0.1
+        container_name: django_observatorio
+        environment: *app-variables
+        volumes: 
+            - static:/code/static
+            - .:/code
+        ports: 
+            - "8000:8000"
+        command: gunicorn -c config/gunicorn/conf.py --bind :8000 --chdir Observatorio Observatorio.wsgi:application
+        depends_on:
+            - postgres
+
+    nginx:
+        image: nginx:1.20.0
+        container_name: nginx_observatorio
+        ports:
+            - 80:80
+        volumes:
+            - ./config/nginx/conf.d:/etc/nginx/conf.d
+            - static:/code/static
+        depends_on:
+            - django
+
+
+volumes:
+    .:
+    postgres_data:
+    static:

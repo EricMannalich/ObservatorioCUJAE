@@ -41,7 +41,13 @@
     <Compile Include="app\views.py" />
     <Compile Include="app\__init__.py" />
     <Compile Include="app\migrations\__init__.py" />
+    <Compile Include="config\gunicorn\conf.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="manage.py" />
+    <Compile Include="Dockerfile">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Observatorio\__init__.py" />
     <Compile Include="Observatorio\settings.py" />
     <Compile Include="Observatorio\urls.py" />
@@ -57,9 +63,17 @@
     <Folder Include="app\static\app\scripts\" />
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
+    <Folder Include="config\" />
+    <Folder Include="config\gunicorn\" />
+    <Folder Include="config\nginx\" />
+    <Folder Include="config\nginx\conf.d\" />
     <Folder Include="Observatorio\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config\nginx\conf.d\local.conf">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="docker-compose.yml" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />

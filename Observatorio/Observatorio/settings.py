@@ -25,7 +25,7 @@ SECRET_KEY = 'e154c3b8-0b5b-4dca-8f2d-08cbc07fda82'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application references
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
@@ -75,13 +75,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Observatorio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+
+POSTGRES_BD = os.environ.get('POSTGRES_BD', default="Observatorio1")
+POSTGRES_USER = os.environ.get('POSTGRES_USER', default="postgres")
+POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', default="1qazxsw2")
+POSTGRES_HOST = os.environ.get('POSTGRES_HOST', default="127.0.0.1")
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Observatorio1',
-        'USER': 'postgres',
-        'PASSWORD': '1qazxsw2',
-        'HOST': '127.0.0.1',
+        'NAME': POSTGRES_BD,
+        'USER': POSTGRES_USER,
+        'PASSWORD': POSTGRES_PASSWORD,
+        'HOST': POSTGRES_HOST,
         'DATABASE_PORT': '5432',
     }
 }
@@ -114,4 +120,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_URL = '/static/'
-STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
+STATIC_ROOT = '/code/static/'
+#STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
