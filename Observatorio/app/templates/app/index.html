@@ -39,11 +39,11 @@
             {{ documento.resumen }}
         </p>
         <h4>
-            {% if documento.tema == 'Info' %} Inform&aacute;tica
-            {% elif documento.tema == 'Tele' %} Telecomunicaciones
-            {% endif %}
+            {{ documento.tema.nombre }}
         </h4>
+        {% if documento.pais %}
         <h5>{{ documento.pais }}</h5>
+        {% endif %}
         <p><a class="btn btn-default" href="{{ documento.link }}">Descargar</a></p>
     </div>
     {% endfor %}

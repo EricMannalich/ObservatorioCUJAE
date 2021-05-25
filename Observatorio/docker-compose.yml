@@ -1,9 +1,9 @@
 version: '3.8'
 
 x-database-variables: &database-variables
-    POSTGRES_BD: postgres
-    POSTGRES_USER: postgres
-    POSTGRES_PASSWORD: postgres
+    POSTGRES_BD: Observatorio
+    POSTGRES_USER: DICT
+    POSTGRES_PASSWORD: qwerty2468*.
 
 x-app-variables: &app-variables
     <<: *database-variables

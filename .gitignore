@@ -12,6 +12,8 @@
 
 #Entorno
 */env/
+*/env1/
+commands.txt
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

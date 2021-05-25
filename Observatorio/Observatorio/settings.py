@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'Observatorio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-POSTGRES_BD = os.environ.get('POSTGRES_BD', default="Observatorio1")
+POSTGRES_BD = os.environ.get('POSTGRES_BD', default="Observatorio2")
 POSTGRES_USER = os.environ.get('POSTGRES_USER', default="postgres")
 POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', default="1qazxsw2")
 POSTGRES_HOST = os.environ.get('POSTGRES_HOST', default="127.0.0.1")
