@@ -8,6 +8,13 @@ x-database-variables: &database-variables
 x-app-variables: &app-variables
     <<: *database-variables
     POSTGRES_HOST: postgres
+    SECRET_KEY: "e154c3b8-0b5b-4dca-8f2d-08cbc07fda82"
+    ALLOWED_HOSTS: "*"
+    DEBUG: 0
+    CSRF_COOKIE_SECURE: 1
+    SESSION_COOKIE_SECURE: 1
+    SECURE_HSTS_SECONDS: 31536000
+    SECURE_SSL_REDIRECT: 1
 
 services:
     postgres:
@@ -28,7 +35,7 @@ services:
             - .:/code
         ports: 
             - "8000:8000"
-        command: gunicorn -c config/gunicorn/conf.py --bind :8000 --chdir Observatorio Observatorio.wsgi:application
+        command: bash -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn -c config/gunicorn/conf.py --bind :8000 --chdir Observatorio Observatorio.wsgi:application"
         depends_on:
             - postgres
 
@@ -37,7 +44,9 @@ services:
         container_name: nginx_observatorio
         ports:
             - 80:80
+            - 443:443
         volumes:
+            - ssl:/etc/ssl
             - ./config/nginx/conf.d:/etc/nginx/conf.d
             - static:/code/static
         depends_on:
@@ -47,4 +56,5 @@ services:
 volumes:
     .:
     postgres_data:
+    ssl:
     static:

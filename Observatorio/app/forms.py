@@ -24,12 +24,13 @@ class Form_busqueda_documentos(forms.Form):
     #day = forms.DateField(initial=datetime.now())
     palabra = forms.CharField(max_length = 254, required = False,
                                widget = forms.TextInput({
-                                   'class': 'form-control mr-sm-2'}))
+                                   'class': 'form-control',
+                                   'placeholder':'Palabras'}))
     tema_select = forms.ModelChoiceField(queryset=Tema.objects.all(),
                                          required = False,
                                         widget = forms.Select({
-                                            'class': 'form-control mr-sm-2'}))
+                                            'class': 'form-control'}))
     idioma_select = forms.ChoiceField(required = False,
                                 widget = forms.Select({
-                                    'class': 'form-control mr-sm-2'}),
+                                    'class': 'form-control'}),
                                 choices = IDIOMA)

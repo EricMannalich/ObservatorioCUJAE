@@ -1,7 +1,49 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    /*background-color: #006633;
+    color: #006633;*/
 }
+.navbar-inverse,
+.navbar-brand {
+    background-color: #003300;
+}
+
+p,
+a {
+    font-family: Verdana;
+    color: black;
+    text-align: justify;
+}
+
+a:hover {
+    color: #009966;
+}
+a:visited {
+    color: #006633;
+}
+
+.btn-primary{
+    background-color: #006633;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+input,
+select {
+    font-family: Humnst777BT;
+}
+
+.jumbotron{
+    padding: 20px;
+    margin: 10px;
+}
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

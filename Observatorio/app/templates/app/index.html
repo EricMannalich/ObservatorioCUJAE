@@ -4,7 +4,7 @@
 
 <div class="jumbotron">
     <div class="container">
-        <h2>{{ message }}</h2>
+        <!--<h2>{{ message }}</h2>-->
     </div>
     <div class="container">
         {% if form.errors %}
@@ -12,7 +12,8 @@
         {% endif %}
     </div>
     <div class="container">
-        <form action="" method="post" class="form-inline my-2 my-lg-0">{% csrf_token %}
+        
+        <form action="" method="post" class="form-inline">{% csrf_token %}
             <div class="form-group">
                 <label>Tema:</label>
                 {{ form.tema_select }}
@@ -21,11 +22,19 @@
                 <label>Idioma:</label>
                 {{ form.idioma_select }}
             </div>
+            
             <div class="form-group">
                 <label>Palabras clave:</label>
                 {{ form.palabra }}
                 <input type="submit" class="btn btn-primary" value="Buscar" />
             </div>
+            
+            <!--<div class="form-group">
+                <label>Palabras clave:</label>
+                {{ form.palabra }}
+                <input type="submit" class="btn btn-primary" value="Buscar" />
+            </div>-->
+            
         </form>
     </div>
 </div>
@@ -33,18 +42,26 @@
 <div class="row">
     {% for documento in grupo_documentos %}
     <div class="col-md-4">
-        <h2>{{ documento.titulo }}</h2>
-        <h3>Resumen</h3>
+        <h2>
+            {% if documento.link %}<a href="{{ documento.link }}">{{ documento.titulo }}</a>
+            {% else %}{{ documento.titulo }}
+            {% endif %}
+        </h2>
+        <!--<h3>Resumen</h3>-->
         <p>
             {{ documento.resumen }}
         </p>
         <h4>
             {{ documento.tema.nombre }}
+            {% if documento.fecha %} - 
+            {{ documento.fecha }}
+            {% endif %}
+            {% if documento.pais %} - 
+            {{ documento.pais }}
+            {% endif %}
         </h4>
-        {% if documento.pais %}
-        <h5>{{ documento.pais }}</h5>
-        {% endif %}
-        <p><a class="btn btn-default" href="{{ documento.link }}">Descargar</a></p>
+        
+        <!--<p><a class="btn btn-default" href="{{ documento.link }}">Descargar</a></p>-->
     </div>
     {% endfor %}
 </div>

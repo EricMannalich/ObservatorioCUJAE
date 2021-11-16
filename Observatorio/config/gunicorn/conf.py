@@ -1,5 +1,7 @@
+import multiprocessing
+
 name = 'Observatorio'
 loglevel = 'info'
 errorlog = '-'
 accesslog = '-'
-workers = 3
+workers = multiprocessing.cpu_count() * 2 + 1

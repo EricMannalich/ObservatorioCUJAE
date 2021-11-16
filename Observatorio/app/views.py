@@ -38,7 +38,7 @@ def home(request):
         'app/index.html',
         {
             'title':'Inicio',
-            'message':'Buscar documento',
+            'message':'Buscador',
             'year':datetime.now().year,
             'query':entrada,
             'form':busqueda,
@@ -53,8 +53,8 @@ def contact(request):
         request,
         'app/contact.html',
         {
-            'title':'Contact',
-            'message':'Your contact page.',
+            'title':'Contacto',
+            'message':'Página de contacto.',
             'year':datetime.now().year,
         }
     )

@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
     <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    <link rel="icon" type="image/png" href="{% static 'app/images/logo.png' %}"/>
 </head>
 
 <body>
@@ -24,9 +25,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'home' %}">Inicio</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <!--<li><a href="{% url 'home' %}">Inicio</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>-->
+                    <li><a href="{% url 'contact' %}">Contacto</a></li>
                     {% if user.is_staff %}
                     <li><a href="/admin/">Administrar</a></li>
                     {% endif %}
@@ -40,7 +41,20 @@
 {% block content %}{% endblock %}
         <hr/>
         <footer>
-            <p>&copy; {{ year }} - Observatorio CUJAE</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+    
+                        <a href="http://web.cujae.edu.cu/"><img src="{% static 'app/images/logo.png' %}" alt="Salt - HTML5 theme" width="6%" height="6%"> </a>
+    
+    
+                        <FONT FACE="verdana">  &copy; {{ year }} - Observatorio CUJAE </FONT>
+                    </div>
+                    <div class="col-md-6 text-right">
+    
+                                        </div>
+                </div>
+            </div>
         </footer>
     </div>
 

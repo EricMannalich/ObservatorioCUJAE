@@ -20,12 +20,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e154c3b8-0b5b-4dca-8f2d-08cbc07fda82'
+SECRET_KEY = os.environ.get('SECRET_KEY', default="qwerty2468*.")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get('DEBUG', default="1")))
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
+ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOSTS')
+if ALLOWED_HOSTS_ENV:
+    ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
 
 # Application references
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
@@ -112,10 +115,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 LANGUAGE_CODE = 'es-eu'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Havana'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+CSRF_COOKIE_SECURE = bool(int(os.environ.get('CSRF_COOKIE_SECURE', default="0")))
+SESSION_COOKIE_SECURE = bool(int(os.environ.get('SESSION_COOKIE_SECURE', default="0")))
+SECURE_HSTS_SECONDS = os.environ.get('SECURE_HSTS_SECONDS', default=0)
+#SECURE_SSL_REDIRECT = bool(int(os.environ.get('SECURE_SSL_REDIRECT', default="0")))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
